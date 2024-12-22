@@ -1,12 +1,10 @@
 class BankAccount:
 
-    def __init__(self, owner, balance=0, percent=0):
+    def __init__(self, owner, balance=0):
         self.history = []
         self.owner = owner
         self.check_balnce(balance)
         self.balance = balance
-        self.apply_interest(percent)
-        self.percent = percent
 
     def deposite(self, amount):
         if amount <= 0:
@@ -43,6 +41,8 @@ class BankAccount:
     def check_balance(b):
         if b > 1000000:
             raise ValueError("you cant keep over milion")
+        elif b < 0:
+            raise ValueError("Balance cannot be negative")
 
     def __str__(self):
         return f"{self.owner}, {self.balance}"
