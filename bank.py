@@ -9,7 +9,7 @@ class BankAccount:
         self.balance += amount
 
     def withdraw(self, amount):
-        self.check_amount(self.balance, amount) is not True
+        self.check_amount(self.balance, amount)
         self.balance -= amount
 
     def transfer(self, amount, other_account):
@@ -19,7 +19,7 @@ class BankAccount:
 
     @staticmethod
     def check_amount(dep, amount):
-        if dep <= amount:
+        if dep < amount:
             raise ValueError("Amount must ve less than balance")
 
     def __str__(self):
