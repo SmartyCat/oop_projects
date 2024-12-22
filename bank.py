@@ -5,31 +5,36 @@ class BankAccount:
         """Инициализация имени владельца и балана"""
         self.history = []
         self.owner = owner
-        self.check_balnce(balance)
+        self.check_balance(balance)
         self.balance = balance
 
     def deposite(self, amount):
         """Метод для пополнени счета"""
         if amount <= 0:
-            raise ValueError("You need to use ntegers bigger than 0")
+            raise ValueError("You need to use integers bigger than 0")
         self.balance += amount
-        self.history.append(f"Deposited {amount}")
+        self.history.append(f"Deposited {amount}. Your balance is {self.balance}")
 
     def withdraw(self, amount):
         """Метод для снятия счета"""
         self.check_amount(self.balance, amount)
         self.balance -= amount
-        self.history.append(f"Withdraw {amount}")
+        self.history.append(f"Withdraw {amount}. Your balance is {self.balance}")
 
     def transfer(self, amount, other_account):
         "Метод для первода денег"
         self.check_amount(self.balance, amount)
         other_account.balance += amount
         self.balance -= amount
-        self.history.append(f"Transfer {amount} on {other_account.owner}")
+        self.history.append(
+            f"Transfer {amount} on {other_account.owner}. Your balance is {self.balance}"
+        )
+        other_account.history.append(
+            f"Transfer from {self.owner}.Your balance is {other_account.balance}"
+        )
 
     def apply_interest(self, p):
-        """Метод начисления процентов"""
+        """Метод начисления процентов. Проценты принимаються в виде десятичной дроби"""
         if not isinstance(p, (int, float)) or p < 0:
             raise ValueError
         interest = self.balance * p
