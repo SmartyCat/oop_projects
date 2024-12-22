@@ -36,7 +36,7 @@ class BankAccount:
     def apply_interest(self, p):
         """Метод начисления процентов. Проценты принимаються в виде десятичной дроби"""
         if not isinstance(p, (int, float)) or p < 0:
-            raise ValueError
+            raise ValueError(" you mus use only positive integers")
         interest = self.balance * p
 
         self.check_balance(self.balance + interest)
@@ -63,3 +63,6 @@ class BankAccount:
 
     def __str__(self):
         return f"{self.owner}, {self.balance}"
+
+
+
