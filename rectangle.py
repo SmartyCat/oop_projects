@@ -1,18 +1,13 @@
-class Rectanle:
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
+class Rectangle:
+    def __init__(self,length,width):
+        self.__length=length
+        self.__width=width
 
-    def area(self):
-        return self.width * self.height
+    def get_area(self):
+        return self.__length*self.__width
+    def get_perimetr(self):
+        return 2*(self.__length+self.__width)
+    
+    perimeter=property(get_perimetr)
+    area=property(get_area)
 
-    def primeter(self):
-        return 2 * (self.width + self.height)
-
-    def is_square(self):
-        return self.width == self.height
-
-rect=Rectanle(5,5)
-print(rect.area())
-print(rect.primeter())
-print(rect.is_square())
