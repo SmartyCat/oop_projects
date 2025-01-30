@@ -3,7 +3,7 @@
 class Account:
     def __init__(self,login,password):
         self.__login=login
-        self.__password=password
+        self.__password=self.hash_function(password)
 
     @staticmethod
     def hash_function(password):
@@ -14,10 +14,7 @@ class Account:
     
     @property
     def login(self):
-        try:
-            return self.__login
-        except AttributeError as e:
-            print("Нельзя менять логин")
+        return self.__login
 
     @property
     def password(self):
@@ -25,6 +22,6 @@ class Account:
     
     @password.setter
     def password(self,new_password):
-        self.__password=new_password
+        self.__password=self.hash_function(new_password)
     
 a=Account("misha","1234")
