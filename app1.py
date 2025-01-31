@@ -63,7 +63,8 @@ def login():
         user=db.cursor().execute("SELECT username,password FROM users WHERE username = ?",(request.form.get("username_login"),)).fetchone()
         if request.form.get("username_login") and check_password_hash(user[1],request.form.get("password_login")):
             user_login=UserLogin().create(user)
-            login_user(user_login)
+            rm=True if request.form.get("remember") else False
+            login_user(user_login,remember=rm)
             return redirect("/")
     return render_template("login.html")
 
