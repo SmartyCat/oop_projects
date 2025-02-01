@@ -59,12 +59,12 @@ def index():
 @app.route("/registr", methods=["POST", "GET"])
 def registr():
     db = get_db()
-    if not current_user:
+    if current_user.is_authenticated:
         return redirect("/profile")
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        if username and password == request.form.get("password2"):
+        if username and password and  password== request.form.get("password2"):
             db.cursor().execute(
                 "INSERT INTO users VALUES(Null,?,?)",
                 (username, generate_password_hash(password)),
@@ -77,7 +77,7 @@ def registr():
 @app.route("/login", methods=["POST", "GET"])
 def login():
     db = get_db()
-    if not current_user:
+    if current_user.is_authenticated:
         return redirect("profile")
     if request.method == "POST":
         user = db.cursor().execute(
