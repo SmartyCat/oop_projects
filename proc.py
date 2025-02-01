@@ -24,3 +24,5 @@ class Processor:
     def tuple_proces(x):
         x = sorted(x, reverse=True)
         return tuple(x)
+
+print("xuy")
