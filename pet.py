@@ -1,22 +1,22 @@
 class Pet:
-    l = []
+    names = []
 
     def __init__(self, name):
         self.name = name
-        Pet.l.append(self.name)
+        Pet.names.append(self)
 
     @classmethod
     def first_pet(cls):
-        if cls.l:
-            return cls.l[0]
+        if cls.names:
+            return cls.names[0]
         return None
 
     @classmethod
     def last_pet(cls):
-        if cls.l:
-            return cls.l[-1]
+        if cls.names:
+            return cls.names[-1]
         return None
 
     @classmethod
     def num_of_pets(cls):
-        return len(cls.l)
+        return len(cls.names)
