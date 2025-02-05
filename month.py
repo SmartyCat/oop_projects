@@ -10,24 +10,32 @@ class Month:
     def __repr__(self):
         return f"Month({self.year},{self.month})"
 
-    def __eq__(self, other):
-        if isinstance(other, Month):
-            return self.year == other.year and self.month == other.month
-        elif isinstance(other, tuple) and len(other) == 2:
-            return self.year == other[0] and self.moth == other[1]
+    def __eq__(self, value):
+        if isinstance(value, Month):
+            return self.year == value.year and self.month == value.month
+        elif isinstance(value, tuple) and len(value) == 2:
+            return self.year == value[0] and self.month == value[1]
         return NotImplemented
 
-    def __lt__(self, other):
-        if isinstance(other, Month):
-            return self.year < other.year
-        elif isinstance(other, tuple) and len(other):
-            return self.year < other[0]
+    def __lt__(self, value):
+        if isinstance(value, Month):
+            if self.year == value.year:
+                return self.month < value.month
+            return self.year < value.year
+        elif isinstance(value, tuple) and len(value) == 2:
+            if self.year == value[0]:
+                return self.month < value[1]
+            return self.year == value[0]
 
-        return NotImplemented
+    def __le__(self, value):
+        if isinstance(value, Month):
+            if self.year == value.year:
+                return self.month <= value.month
+            return self.year <= value.year
+        elif isinstance(value, tuple) and len(value) == 2:
+            if self.year == value[0]:
+                return self.month <= value[1]
+            return self.year <= value[0]
 
-    def __le__(self, other):
-        if isinstance(other, Month):
-            return self.year <= other.year
-        elif isinstance(other, tuple) and len(other):
-            return self.year <= other[0]
-        return NotImplemented
+
+
